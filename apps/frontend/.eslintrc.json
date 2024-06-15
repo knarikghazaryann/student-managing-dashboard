@@ -1,0 +1,56 @@
+{
+  "plugins": ["unused-imports", "prettier"],
+  "extends": ["plugin:react/recommended"],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"]
+    }
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": "error",
+    "no-unused-vars": "off",
+    "no-var": "error",
+    "import/no-anonymous-default-export": "off",
+    "unused-imports/no-unused-imports": "error",
+    "react/jsx-curly-brace-presence": ["error", "never"],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": ["block", "block-like", "cjs-export", "class", "export", "import"],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": ["export", "import"],
+        "next": ["export", "import"]
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  }
+}
