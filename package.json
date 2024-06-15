@@ -1,0 +1,18 @@
+{
+  "name": "student-managing-dashboard",
+  "version": "1.0.0",
+  "description": "A mini student managing dashboard app.",
+  "repository": "https://github.com/knarikghazaryann/student-managing-dashboard.git",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:front": "yarn workspace frontend run start",
+    "dev:back": "yarn workspace backend run dev",
+    "build:back": "yarn workspace backend run build",
+    "build:front": "yarn workspace frontend run build",
+    "dc:up": "yarn workspace backend run dc:up",
+    "db:migrate": "yarn workspace backend run migrate"
+  }
+}
