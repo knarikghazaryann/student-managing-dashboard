@@ -2,7 +2,13 @@ import PropTypes from 'prop-types'
 import CountryCityState from './CountryCityState'
 import {addStudentModalConsts} from '../consts'
 
-const StudentModal = ({setIsModalOpen, handleDone, errorMessage, handleOnChange}) => {
+const StudentModal = ({
+  setIsModalOpen,
+  handleDone,
+  errorMessage,
+  handleOnChange,
+  setStudentData,
+}) => {
   const handleClose = () => setIsModalOpen(false)
 
   return (
@@ -23,8 +29,8 @@ const StudentModal = ({setIsModalOpen, handleDone, errorMessage, handleOnChange}
             />
           )
         })}
-        <CountryCityState handleOnChange={handleOnChange} />
-        <p>{errorMessage}</p>
+        <CountryCityState handleOnChange={handleOnChange} setStudentData={setStudentData} />
+        <p className="text-red-500">{errorMessage}</p>
         <div className="flex justify-between">
           <button onClick={handleClose} className="text-gray-600">
             Cancel
@@ -44,6 +50,7 @@ StudentModal.propTypes = {
   setIsModalOpen: PropTypes.func,
   handleDone: PropTypes.func,
   handleOnChange: PropTypes.func,
+  setStudentData: PropTypes.func,
   errorMessage: PropTypes.string,
 }
 

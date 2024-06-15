@@ -97,10 +97,13 @@ export const editStudent = async (req, res) => {
 }
 
 export const searchStudents = async (req, res) => {
-    const {first_name, last_name} = req.body
+    const { first_name, last_name } = req.body;
+    const trimmedFirstName = first_name ? first_name.trim().toLowerCase() : null
+    const trimmedLastName = last_name ? last_name.trim().toLowerCase() : null
+
     try {
-        const searchResult = await query(searchStudentsQuery, [first_name, last_name])
-        if(searchResult.rows.length === 0) res.status(404).send('No student found.')
+        const searchResult = await query(searchStudentsQuery, [trimmedFirstName, trimmedLastName])
+        if(searchResult.rows.length === 0) return res.status(404).send('No student found.')
 
         return res.status(200).json(searchResult.rows)
     } catch (e) {
