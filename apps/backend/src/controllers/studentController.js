@@ -21,7 +21,7 @@ export const createStudent = async (req, res) => {
     const { first_name, last_name, email, password, age, country, city } = req.body
 
     const isEmailValid = validateEmail(email)
-    if (!isEmailValid) res.status(400).send('Invalid email.')
+    if (!isEmailValid) return res.status(400).send('Invalid email.')
 
 
     try {
@@ -35,12 +35,12 @@ export const createStudent = async (req, res) => {
     }
 
     const { isValid, messages } = validatePassword(password)
-    if (!isValid) res.status(400).send(messages[0])
+    if (!isValid) return res.status(400).send(messages[0])
 
     const hashedPassword = await bcrypt.hash(password, 5)
 
     try {
-        const createResult = await query(createStudentQuery, [first_name, last_name, email, hashedPassword, age, country, city])
+        const createResult = await query(createStudentQuery, [first_name, last_name, email, hashedPassword, +age, country, city])
         return res.status(200).json(createResult.rows[0])
     } catch (e) {
         console.error('Error creating student:', e)
